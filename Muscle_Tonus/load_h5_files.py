@@ -44,22 +44,26 @@ class EMG_Data:
         self.data_window   = True
 
     def average_out(self, use_data_window=True):
+        print "Start Average"
         if use_data_window and self.data_window:
             self.averaged_out = copy.deepcopy(self.true_EMG_data)
             for i in range(0, np.shape(self.true_EMG_data)[1]):
                 self.averaged_out[:, i] = self.true_EMG_data[:, i] - np.mean(self.true_EMG_data[:, i])
-            print "True EMG averaged out"
 
         else:
             self.averaged_out = copy.deepcopy(self.EMG_data)
             for i in range(0, np.shape(self.EMG_data)[1]):
                 self.averaged_out[:, i] = self.EMG_data[:, i] - np.mean(self.EMG_data[:, i])
-            print "EMG averaged out"
+        print "End Average"
+
 
     def window_rms(self, window_size):
+        print "Start RMS"
         window_size = window_size * self.EMG_def[0]
         lower_index = 0
         upper_index = window_size
+        if hasattr(self, 'end_index') == False:
+            self.end_index = len(self.EMG_data[:, 0])
 
         self.RMS_EMGs = np.zeros((1, 4))
         while (self.end_index) >= upper_index-1:
@@ -71,8 +75,8 @@ class EMG_Data:
             upper_index += 1
             lower_index += 1
 
-        print "RMS_EMGs_Window"
         self.RMS_EMGs =  self.RMS_EMGs[1:, :]
+        print "End RMS"
 
     def normalize_RMS(self, max_values):
         self.RMS_EMGs_Normalized = copy.deepcopy(self.RMS_EMGs)
