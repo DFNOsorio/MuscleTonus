@@ -1,0 +1,51 @@
+from Muscle_Tonus import *
+import matplotlib.pyplot as plt
+import numpy as np
+
+MVC_Data = load_data_h5('EMGs/h5/MVC')
+Arms_Extensions_Data = load_data_h5('EMGs/h5/Arms_Extensions')
+Rest_Data = load_data_h5('EMGs/h5/Rest')
+Right_Foot_Data = load_data_h5('EMGs/h5/Right_Foot')
+Left_Foot_Data = load_data_h5('EMGs/h5/Left_Foot')
+Two_Feet_Data = load_data_h5('EMGs/h5/Two_Feet')
+
+#MVC - 0 to 8 seconds
+MVC_Data.set_data_window(0, 8)
+MVC_Data.average_out()
+MVC_Data.window_rms(0.5)
+MVC_Data.normalize_RMS(MVC_Data.get_max_RMS_values())
+
+plt.figure()
+plt.subplot(221)
+plt.plot(MVC_Data.true_EMG_time, MVC_Data.averaged_out[:, 0],'r')
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs[:, 0])], MVC_Data.RMS_EMGs[:, 0])
+plt.title(MVC_Data.EMG_labels[0])
+plt.subplot(222)
+plt.plot(MVC_Data.true_EMG_time, MVC_Data.averaged_out[:, 1],'r')
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs[:, 1])], MVC_Data.RMS_EMGs[:, 1])
+plt.title(MVC_Data.EMG_labels[1])
+plt.subplot(223)
+plt.plot(MVC_Data.true_EMG_time, MVC_Data.averaged_out[:, 2],'r')
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs[:, 2])], MVC_Data.RMS_EMGs[:, 2])
+plt.title(MVC_Data.EMG_labels[2])
+plt.subplot(224)
+plt.plot(MVC_Data.true_EMG_time, MVC_Data.averaged_out[:, 3],'r')
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs[:, 3])], MVC_Data.RMS_EMGs[:, 3])
+plt.title(MVC_Data.EMG_labels[3])
+plt.suptitle("MVC")
+
+plt.figure()
+plt.subplot(221)
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs_Normalized[:, 0])], MVC_Data.RMS_EMGs_Normalized[:, 0])
+plt.title(MVC_Data.EMG_labels[0])
+plt.subplot(222)
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs_Normalized[:, 1])], MVC_Data.RMS_EMGs_Normalized[:, 1])
+plt.title(MVC_Data.EMG_labels[1])
+plt.subplot(223)
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs_Normalized[:, 2])], MVC_Data.RMS_EMGs_Normalized[:, 2])
+plt.title(MVC_Data.EMG_labels[2])
+plt.subplot(224)
+plt.plot(MVC_Data.true_EMG_time[0: len(MVC_Data.RMS_EMGs_Normalized[:, 3])], MVC_Data.RMS_EMGs_Normalized[:, 3])
+plt.title(MVC_Data.EMG_labels[3])
+
+plt.show()
