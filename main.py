@@ -100,7 +100,7 @@ for i in range(0, 4):
     plt.legend(["MVC", "Arms Extension", "Rest", "Right Foot", "Left Foot", "Both Feet"])
     plt.xlim([0, 20])
 
-plt.suptitle("Maximum for each test", fontsize=24)
+plt.suptitle("Normalized values", fontsize=24)
 
 
 plt.figure()
