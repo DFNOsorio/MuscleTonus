@@ -121,10 +121,8 @@ for i in range(0, 4):
     plt.subplot(2,2, i+1)
     ind = np.arange(6)
     width = 0.95
-    #Desvio padrao
-    #Tabela
-    error_config = {'ecolor': '0.3', 'capthick': '1'}
-    plt.bar(ind, max_values[:, i], width, yerr=[np.std(MVC_Data.RMS_EMGs_Normalized[:, i]), np.std(Arms_Extensions_Data.RMS_EMGs_Normalized[:, i]), np.std(Rest_Data.RMS_EMGs_Normalized[:, i]), np.std(Right_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Left_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Two_Feet_Data.RMS_EMGs_Normalized[:, i])], error_kw=error_config)
+    error_config = {'ecolor': '0.3', 'capthick': 1}
+    plt.bar(ind, max_values[:, i], width, yerr=[0, np.std(Arms_Extensions_Data.RMS_EMGs_Normalized[:, i]), np.std(Rest_Data.RMS_EMGs_Normalized[:, i]), np.std(Right_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Left_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Two_Feet_Data.RMS_EMGs_Normalized[:, i])], error_kw=error_config)
     plt.xticks(ind + width/2.0, ("MVC", "Arms Extension", "Rest", "Right Foot", "Left Foot", "Both Feet"))
     plt.title(MVC_Data.EMG_labels[i], fontsize=20)
     plt.ylabel("Percentage from MVC maximum (%)")
@@ -136,10 +134,8 @@ for i in range(0, 4):
     plt.subplot(2,2, i+1)
     ind = np.arange(6)
     width = 0.95
-    #Desvio padrao
-    #Tabela
-    error_config = {'ecolor': '0.3', 'capthick': '1'}
-    plt.bar(ind, [np.mean(MVC_Data.RMS_EMGs_Normalized[:, i]), np.mean(Arms_Extensions_Data.RMS_EMGs_Normalized[:, i]), np.mean(Rest_Data.RMS_EMGs_Normalized[:, i]), np.mean(Right_Foot_Data.RMS_EMGs_Normalized[:, i]), np.mean(Left_Foot_Data.RMS_EMGs_Normalized[:, i]), np.mean(Two_Feet_Data.RMS_EMGs_Normalized[:, i])], width, yerr=[np.std(MVC_Data.RMS_EMGs_Normalized[:, i]), np.std(Arms_Extensions_Data.RMS_EMGs_Normalized[:, i]), np.std(Rest_Data.RMS_EMGs_Normalized[:, i]), np.std(Right_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Left_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Two_Feet_Data.RMS_EMGs_Normalized[:, i])], error_kw=error_config)
+    error_config = {'ecolor': '0.3', 'capthick': 1}
+    plt.bar(ind, [np.mean(MVC_Data.RMS_EMGs_Normalized[:, i]), np.mean(Arms_Extensions_Data.RMS_EMGs_Normalized[:, i]), np.mean(Rest_Data.RMS_EMGs_Normalized[:, i]), np.mean(Right_Foot_Data.RMS_EMGs_Normalized[:, i]), np.mean(Left_Foot_Data.RMS_EMGs_Normalized[:, i]), np.mean(Two_Feet_Data.RMS_EMGs_Normalized[:, i])], width, yerr=[0, np.std(Arms_Extensions_Data.RMS_EMGs_Normalized[:, i]), np.std(Rest_Data.RMS_EMGs_Normalized[:, i]), np.std(Right_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Left_Foot_Data.RMS_EMGs_Normalized[:, i]), np.std(Two_Feet_Data.RMS_EMGs_Normalized[:, i])], error_kw=error_config)
     plt.xticks(ind + width/2.0, ("MVC", "Arms Extension", "Rest", "Right Foot", "Left Foot", "Both Feet"))
     plt.title(MVC_Data.EMG_labels[i], fontsize=20)
     plt.ylabel("Percentage from MVC maximum (%)")
